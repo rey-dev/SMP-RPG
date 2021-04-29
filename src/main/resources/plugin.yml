@@ -1,0 +1,6 @@
+name: SMP RPG
+version: ${project.version}
+main: me.rey.smp.SMPRPG
+api-version: 1.16
+authors: [ Rey, Baloo ]
+description: SMP for big brain buddies
