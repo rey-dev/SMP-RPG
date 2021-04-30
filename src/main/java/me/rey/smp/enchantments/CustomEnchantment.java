@@ -1,6 +1,5 @@
 package me.rey.smp.enchantments;
 
-import me.rey.smp.utils.UtilItem;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
@@ -42,12 +41,8 @@ public abstract class CustomEnchantment extends Enchantment implements Listener 
         return false;
     }
 
-    protected void updateItemLore(final ItemStack itemStack) {
-        UtilItem.updateEnchantments(itemStack);
-    }
-
     protected boolean hasEnchant(final ItemStack itemStack) {
-        return itemStack == null || itemStack.hasItemMeta() || !itemStack.containsEnchantment(SMPEnchants.TELEKINESIS);
+        return itemStack != null && itemStack.hasItemMeta() && itemStack.getItemMeta().hasEnchant(SMPEnchants.TELEKINESIS);
     }
 
 }

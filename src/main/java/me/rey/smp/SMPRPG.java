@@ -5,6 +5,7 @@ import me.rey.smp.enchantments.SMPEnchants;
 import me.rey.smp.items.CustomItem;
 import me.rey.smp.items.repo.ForgePickaxe;
 import me.rey.smp.items.repo.MagicalStickOfBonking;
+import me.rey.smp.listeners.InventoryListener;
 import me.rey.utils.ServerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -50,6 +51,7 @@ public final class SMPRPG extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(customEnchantment, this);
         }
 
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
     }
 
     @Override
