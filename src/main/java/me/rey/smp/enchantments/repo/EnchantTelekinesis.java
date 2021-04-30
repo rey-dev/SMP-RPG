@@ -32,7 +32,7 @@ public class EnchantTelekinesis extends CustomEnchantment {
     }
 
     @Override
-    public boolean canEnchantItem(final ItemStack item) {
+    protected boolean canEnchantItemStack(final ItemStack item) {
         return EnchantmentTarget.TOOL.includes(item);
     }
 

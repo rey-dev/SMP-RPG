@@ -1,5 +1,6 @@
 package me.rey.smp.enchantments;
 
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
@@ -40,6 +41,13 @@ public abstract class CustomEnchantment extends Enchantment implements Listener 
     public boolean isCursed() {
         return false;
     }
+
+    @Override
+    public boolean canEnchantItem(final ItemStack item) {
+        return item.getType().equals(Material.ENCHANTED_BOOK) || this.canEnchantItemStack(item);
+    }
+
+    protected abstract boolean canEnchantItemStack(ItemStack itemStack);
 
     protected boolean hasEnchant(final ItemStack itemStack) {
         return itemStack != null && itemStack.hasItemMeta() && itemStack.getItemMeta().hasEnchant(SMPEnchants.TELEKINESIS);

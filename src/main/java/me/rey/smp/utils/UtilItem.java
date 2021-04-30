@@ -4,12 +4,9 @@ import me.rey.smp.enchantments.CustomEnchantment;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -84,18 +81,35 @@ public class UtilItem {
         itemStack.setItemMeta(itemMeta);
     }
 
-    public static void consumeDurability(final ItemStack itemStack) {
-        if (itemStack.getItemMeta() == null) {
-            return;
+    public static Collection<Enchantment> getItemEnchantments(final ItemStack itemStack) {
+        if (itemStack == null || itemStack.hasItemMeta()) {
+            return Collections.emptyList();
         }
 
-        final ItemMeta meta = itemStack.getItemMeta();
-        if (!(meta instanceof Damageable)) {
-            return;
+        final Set<Enchantment> enchantments = new HashSet<>();
+        if (itemStack.getItemMeta().hasLore()) {
+            for (final String loreLine : itemStack.getItemMeta().getLore()) {
+                final Matcher matcher = enchantmentPattern.matcher(loreLine);
+                if (!matcher.find()) {
+                    continue;
+                }
+
+                for (final Enchantment enchantment : Enchantment.values()) {
+                    if (!(enchantment instanceof CustomEnchantment)) {
+                        continue;
+                    }
+
+                    final CustomEnchantment customEnchantment = ((CustomEnchantment) enchantment);
+                    if (customEnchantment.getName().equals(ChatColor.stripColor(matcher.group(1)))) {
+                        enchantments.add(customEnchantment);
+                        break;
+                    }
+                }
+            }
         }
 
-        ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
-        itemStack.setItemMeta(meta);
+        enchantments.addAll(itemStack.getItemMeta().getEnchants().keySet());
+        return enchantments;
     }
 
 }
