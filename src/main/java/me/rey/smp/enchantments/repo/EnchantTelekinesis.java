@@ -53,6 +53,10 @@ public class EnchantTelekinesis extends CustomEnchantment {
         }
 
         for (final ItemStack toGive : drops) {
+            if (toGive == null) {
+                continue;
+            }
+
             if (player.getInventory().firstEmpty() == -1) {
 
                 event.getBlock().getWorld().dropItemNaturally(
