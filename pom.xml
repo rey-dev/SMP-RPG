@@ -42,13 +42,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>de.tr7zw.changeme.nbtapi</pattern>
-                            <shadedPattern>me.rey.nbtapi</shadedPattern>
-                        </relocation>
-                    </relocations>
-
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
             </plugin>
@@ -70,11 +63,6 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
-            <layout>default</layout>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -83,11 +71,6 @@
             <artifactId>spigot-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.tr7zw</groupId>
-            <artifactId>item-nbt-api</artifactId>
-            <version>2.7.1</version>
         </dependency>
         <dependency>
             <groupId>me.rey.utils</groupId>
