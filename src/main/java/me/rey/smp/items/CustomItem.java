@@ -12,18 +12,22 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class CustomItem implements Listener {
 
+    private static final ArrayList<String> DEFAULT_DESCRIPTION = new ArrayList<>(Arrays.asList(
+            "&7This is the default item description!"
+    ));
+
     private final Item item;
     private final String id;
+    private final Collection<String> description;
 
-    public CustomItem(final String id, final Item item) {
+    public CustomItem(final String id, final Item item, final Collection<String> description) {
         this.id = id;
         this.item = item;
+        this.description = description;
     }
 
     public String getId() {
@@ -31,6 +35,13 @@ public abstract class CustomItem implements Listener {
     }
 
     public ItemStack get() {
+        final List<String> lore = new ArrayList<>(this.description == null ? DEFAULT_DESCRIPTION : this.description);
+        lore.add(0, "&r");
+        lore.add(1, "&8&m                                                 &m");
+        lore.add(2, "&r");
+        lore.add(3, "&f" + this.item.getName());
+        this.item.setLore(lore);
+
         final ItemStack itemToGive = this.item.get();
         final ItemMeta itemMeta = itemToGive.getItemMeta();
         final PersistentDataContainer dataContainer = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
