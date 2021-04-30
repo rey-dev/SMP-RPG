@@ -11,12 +11,15 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.util.Vector;
 
+import java.util.Arrays;
+
 public class MagicalStickOfBonking extends CustomItem {
 
     public MagicalStickOfBonking() {
         super(
                 "MSB",
-                new Item(Material.STICK).setName("&6Magical Stick of Bonking").setGlow(true)
+                new Item(Material.STICK).setName("&6Magical Stick of Bonking").setGlow(true),
+                Arrays.asList("Bonk others by pushing them back!")
         );
     }
 

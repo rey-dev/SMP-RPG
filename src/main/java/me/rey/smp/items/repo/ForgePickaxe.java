@@ -13,6 +13,8 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
+
 public class ForgePickaxe extends CustomItem {
 
     private static final PotionEffect hasteEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, 4, 2);
@@ -20,7 +22,8 @@ public class ForgePickaxe extends CustomItem {
     public ForgePickaxe() {
         super(
                 "FP",
-                new Item(Material.DIAMOND_PICKAXE).setName("&9Forge Pickaxe").setGlow(true)
+                new Item(Material.DIAMOND_PICKAXE).setName("&9Forge Pickaxe").setGlow(true),
+                Arrays.asList("Gain permanent Haste III while holding", "this pickaxe.")
         );
     }
 
